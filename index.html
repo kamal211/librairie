@@ -15,26 +15,31 @@
 			<div class="employee-form">
                 <form onsubmit="event.preventDefault();onFormSubmit();" autocomplete="off">
                     <div>
-                        <label>TITRE*</label><label class="validation-error hide" id="titreValidationError">This field is required.</label>
-                        <input type="text" name="titre" id="formTitre">
+                        <label>TITRE*</label><label id="noValid1"></label>
+                        <input type="text" maxlength="30" name="titre" id="formTitre">
                     </div>
                     <div>
-                        <label>AUTEUR</label>
-                        <input type="text" name="auteur" id="formAuteur">
+                        <label>AUTEUR</label><label id="noValid2"></label>
+                        <input type="text" maxlength="30" name="auteur" id="formAuteur">
                     </div>
                     <div>
-                        <label>PRIX</label>
-                        <input type="text" name="prix" id="formPrix">
+                        <label>PRIX</label><label id="noValid3"></label>
+                        <input type="number" name="prix" id="formPrix">
                     </div>
                     <div>
-                        <label>DATE DE PUBLICATION</label>
-                        <input type="text" name="dateDePublication" id="form-date-pub">
+                        <label>DATE DE PUBLICATION</label><label id="noValid4"></label>
+                        <input type="date" name="dateDePublication" id="form-date-pub">
                     </div>
                     <div>
-                        <label>LANGUE</label>
-                        <input type="text" name="langue" id="formLangue">
+                        <label>LANGUE</label><label id="noValid5"></label>
+                        <input type="text" name="langue" id="formLangue" list="lesLangues">
+                        <datalist id="lesLangues">
+                            <option value="Francais">
+                            <option value="Anglais">
+                            <option value="Arabe">
+                          </datalist>
                     </div>
-                    <div id="input2">
+                    <div id="input2"><label id="noValid6"></label>
                         <input type="radio" id="typeRoman" name="typee" value="Roman" >
                         <label>ROMAN</label>
                         <input type="radio" id="typeEssai" name="typee" value="Essai" >

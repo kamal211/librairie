@@ -18,7 +18,6 @@ function readFormData() {
     formData["formprix"] = document.getElementById("formPrix").value;
     formData["formdate"] = document.getElementById("form-date-pub").value;
     formData["formlangue"] = document.getElementById("formLangue").value;
-    formData["type"] = document.getElementsByName("type").value;
     formData['input2']= document.querySelector('input[name="typee"]:checked').value;
 
     console.log(formData)
@@ -62,7 +61,7 @@ function resetForm() {
     document.getElementById("formPrix").value = "";
     document.getElementById("form-date-pub").value = "";
     document.getElementById("formLangue").value = "";
-
+    document.getElementById("input2").value = "";
     selectedRow = null;
 }
 
@@ -84,7 +83,6 @@ function updateRecord(formData) {
     selectedRow.cells[2].innerHTML = formData.formprix;
     selectedRow.cells[3].innerHTML = formData.formdate;
     selectedRow.cells[4].innerHTML = formData.formlangue;
-    selectedRow.cells[5].innerHTML = formData.type;
     selectedRow.cells[5].innerHTML = formData.input2
   
 }
@@ -92,19 +90,21 @@ function updateRecord(formData) {
 function onDelete(td) {
     if (confirm('Are you sure to delete this record ?')) {
         row = td.parentElement.parentElement;
-        document.getElementsById("List").deleteRow(row.rowIndex);
+        document.getElementById("employeist").deleteRow(row.rowIndex);
         resetForm();
     }
 }
 function validate() {
-    isValid = true;
-    if (document.getElementById("formTitre").value == "") {
-        isValid = false;
-        document.getElementById("titreValidationError").classList.remove("hide");
-    } else {
-        isValid = true;
-        if (!document.getElementById("titreValidationError").classList.contains("hide"))
-            document.getElementById("titreValidationError").classList.add("hide");
-    }
-    return isValid;
+   let titre = document.getElementById("formTitre");
+   
+  
+   if (titre.value == "")
+   {
+    document.getElementById('noValid1').innerHTML="Veuillez entrez un nom valide"; 
+    titre.focus(); 
+    return false; 
+   }
+   document.getElementById('noValid1').innerHTML="";
+
+   
 }
