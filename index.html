@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        Librairie
+    </title>
+    <link rel="stylesheet" href="style1.css">
+</head>
+
+<body>
+
+	<h1><center>MY LIB</center></h1>
+	<hr>
+			<div class="employee-form">
+                <form onsubmit="event.preventDefault();onFormSubmit();" autocomplete="off">
+                    <div>
+                        <label>TITRE*</label><label class="validation-error hide" id="titreValidationError">This field is required.</label>
+                        <input type="text" name="titre" id="formTitre">
+                    </div>
+                    <div>
+                        <label>AUTEUR</label>
+                        <input type="text" name="auteur" id="formAuteur">
+                    </div>
+                    <div>
+                        <label>PRIX</label>
+                        <input type="text" name="prix" id="formPrix">
+                    </div>
+                    <div>
+                        <label>DATE DE PUBLICATION</label>
+                        <input type="text" name="dateDePublication" id="form-date-pub">
+                    </div>
+                    <div>
+                        <label>LANGUE</label>
+                        <input type="text" name="langue" id="formLangue">
+                    </div>
+                    <div id="input2">
+                        <input type="radio" id="typeRoman" name="typee" value="Roman" >
+                        <label>ROMAN</label>
+                        <input type="radio" id="typeEssai" name="typee" value="Essai" >
+                        <label>ESSAI</label>
+                        <input type="radio" id="typeBandeDessinee" name="typee" value="Bande-dessinee">
+                        <label>BANDE-DESSINEE</label>
+                    </div>
+                    <div  class="form-action-buttons">
+                        <input type="submit" value="Submit">
+                    </div>
+                </form>
+		</div>
+		<br/>
+		<div class = "employees-table">
+                <table class="list" id="employeist">
+                    <thead>
+                        <tr>
+                            <th>TITRE</th>
+                            <th>AUTEUR</th>
+                            <th>PRIX</th>
+                            <th>DATE DE PUBLICATION</th>
+                            <th>LANGUE</th>
+                            <th >TYPE</th>
+                            <th >ACTIONS</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody">
+
+                    </tbody>
+                </table>
+        </div>
+    <script src="script1.js"></script>
+</body>
+</html>
