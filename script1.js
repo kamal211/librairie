@@ -96,7 +96,11 @@ function onDelete(td) {
 }
 function validate() {
    let titre = document.getElementById("formTitre");
-   
+   let auteur = document.getElementById("formAuteur");
+   let prix =  document.getElementById("formPrix");
+   let date = document.getElementById("form-date-pub");
+   let langue = document.getElementById("formLangue");
+   let radioButn = document.getElementById("input2"); 
   
    if (titre.value == "")
    {
@@ -106,5 +110,43 @@ function validate() {
    }
    document.getElementById('noValid1').innerHTML="";
 
-   
+   if (auteur.value == "")
+   {
+    document.getElementById('noValid2').innerHTML="Veuillez entrez un nom valide"; 
+    auteur.focus(); 
+    return false; 
+   }
+   document.getElementById('noValid2').innerHTML="";
+
+   if (prix.value == "")
+   {
+    document.getElementById('noValid3').innerHTML="Veuillez entrez un nom valide"; 
+    prix.focus(); 
+    return false; 
+   }
+   document.getElementById('noValid3').innerHTML="";
+
+   if (date.value == "")
+   {
+    document.getElementById('noValid4').innerHTML="Veuillez entrez un nom valide"; 
+    date.focus(); 
+    return false; 
+   }
+   document.getElementById('noValid4').innerHTML="";
+
+   if (langue.value == "")
+   {
+    document.getElementById('noValid5').innerHTML="Veuillez entrez un nom valide"; 
+    langue.focus(); 
+    return false; 
+   }
+   document.getElementById('noValid5').innerHTML="";
+
+   if (radioButn.value == "")
+   {
+    document.getElementById('noValid6').innerHTML="Veuillez entrez un nom valide"; 
+    radioButn.focus(); 
+    return false; 
+   }
+   document.getElementById('noValid6').innerHTML="";
 }
