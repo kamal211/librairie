@@ -1,14 +1,14 @@
 var selectedRow = null
-let input2 = document.getElementById('input2')
+
 function onFormSubmit() {
-    if (validate()) {
         var formData = readFormData();
         if (selectedRow == null)
             insertNewRecord(formData);
         else
             updateRecord(formData);
         resetForm();
-    }
+    console.log(onFormSubmit)
+
 }
 
 function readFormData() {
@@ -18,7 +18,7 @@ function readFormData() {
     formData["formprix"] = document.getElementById("formPrix").value;
     formData["formdate"] = document.getElementById("form-date-pub").value;
     formData["formlangue"] = document.getElementById("formLangue").value;
-    formData['input2']= document.querySelector('input[name="typee"]:checked').value;
+    formData['formtype']= document.querySelector('input[name="typee"]:checked').value;
 
     console.log(formData)
     return formData;
@@ -34,7 +34,7 @@ function readFormData() {
 // }
 
 function insertNewRecord(data) {
-    var table = document.getElementById("employeist").getElementsByTagName('tbody')[0];
+    var table = document.getElementById("list").getElementsByTagName('tbody')[0];
     var newRow = table.insertRow(table.length);
     cell1 = newRow.insertCell(0);
     cell1.innerHTML = data.formtitre;
@@ -47,7 +47,7 @@ function insertNewRecord(data) {
     cell5 = newRow.insertCell(4);
     cell5.innerHTML = data.formlangue;
     cell6 = newRow.insertCell(5);
-    cell6.innerHTML = data.input2;
+    cell6.innerHTML = data.formtype;
     cell7 = newRow.insertCell(6);
     cell7.innerHTML = `<a onClick="onEdit(this)">Edit</a>
                        <a onClick="onDelete(this)">Delete</a>`;
@@ -61,7 +61,6 @@ function resetForm() {
     document.getElementById("formPrix").value = "";
     document.getElementById("form-date-pub").value = "";
     document.getElementById("formLangue").value = "";
-    document.getElementById("input2").value = "";
     selectedRow = null;
 }
 
@@ -72,7 +71,7 @@ function onEdit(td) {
     document.getElementById("formPrix").value = selectedRow.cells[2].innerHTML;
     document.getElementById("form-date-pub").value = selectedRow.cells[3].innerHTML;
     document.getElementById("formLangue").value = selectedRow.cells[4].innerHTML;
-    document.getElementById("input2").value = selectedRow.cells[5].innerHTML;
+  
     
                        console.log(selectedRow)
  
@@ -83,70 +82,68 @@ function updateRecord(formData) {
     selectedRow.cells[2].innerHTML = formData.formprix;
     selectedRow.cells[3].innerHTML = formData.formdate;
     selectedRow.cells[4].innerHTML = formData.formlangue;
-    selectedRow.cells[5].innerHTML = formData.input2
-  
+    selectedRow.cells[5].innerHTML = formData.formtype;
 }
 
 function onDelete(td) {
     if (confirm('Are you sure to delete this record ?')) {
         row = td.parentElement.parentElement;
-        document.getElementById("employeist").deleteRow(row.rowIndex);
+        document.getElementById("list").deleteRow(row.rowIndex);
         resetForm();
     }
 }
-function validate() {
-   let titre = document.getElementById("formTitre");
-   let auteur = document.getElementById("formAuteur");
-   let prix =  document.getElementById("formPrix");
-   let date = document.getElementById("form-date-pub");
-   let langue = document.getElementById("formLangue");
-   let radioButn = document.getElementById("input2"); 
+// function validate() {
+//    let titre = document.getElementById("formTitre");
+//    let auteur = document.getElementById("formAuteur");
+//    let prix =  document.getElementById("formPrix");
+//    let date = document.getElementById("form-date-pub");
+//    let langue = document.getElementById("formLangue");
+//    let radioButn = document.getElementById("input2"); 
   
-   if (titre.value == "")
-   {
-    document.getElementById('noValid1').innerHTML="Veuillez entrez un nom valide"; 
-    titre.focus(); 
-    return false; 
-   }
-   document.getElementById('noValid1').innerHTML="";
+//    if (titre.value == "")
+//    {
+//     document.getElementById('noValid1').innerHTML="Veuillez entrez un nom valide"; 
+//     titre.focus(); 
+//     return false; 
+//    }
+//    else
+//    document.getElementById('noValid1').innerHTML="";
 
-   if (auteur.value == "")
-   {
-    document.getElementById('noValid2').innerHTML="Veuillez entrez un nom valide"; 
-    auteur.focus(); 
-    return false; 
-   }
-   document.getElementById('noValid2').innerHTML="";
+//    if (auteur.value == "")
+//    {
+//     document.getElementById('noValid2').innerHTML="Veuillez entrez un nom valide"; 
+//     auteur.focus(); 
+//     return false; 
+//    }
+//    else
+//    document.getElementById('noValid2').innerHTML="";
 
-   if (prix.value == "")
-   {
-    document.getElementById('noValid3').innerHTML="Veuillez entrez un nom valide"; 
-    prix.focus(); 
-    return false; 
-   }
-   document.getElementById('noValid3').innerHTML="";
+//    if (prix.value == "")
+//    {
+//     document.getElementById('noValid3').innerHTML="Veuillez entrez un nom valide"; 
+//     prix.focus(); 
+//     return false; 
+//    }
+//    else
+//    document.getElementById('noValid3').innerHTML="";
 
-   if (date.value == "")
-   {
-    document.getElementById('noValid4').innerHTML="Veuillez entrez un nom valide"; 
-    date.focus(); 
-    return false; 
-   }
-   document.getElementById('noValid4').innerHTML="";
+//    if (date.value == "")
+//    {
+//     document.getElementById('noValid4').innerHTML="Veuillez entrez un nom valide"; 
+//     date.focus(); 
+//     return false; 
+//    }
+//    else
+//    document.getElementById('noValid4').innerHTML="";
 
-   if (langue.value == "")
-   {
-    document.getElementById('noValid5').innerHTML="Veuillez entrez un nom valide"; 
-    langue.focus(); 
-    return false; 
-   }
-   document.getElementById('noValid5').innerHTML="";
+//    if (langue.value == "")
+//    {
+//     document.getElementById('noValid5').innerHTML="Veuillez entrez un nom valide"; 
+//     langue.focus(); 
+//     return false; 
+//    }
+//    else
+//    document.getElementById('noValid5').innerHTML="";
 
-   if (radioButn.value == "")
-   {
-    document.getElementById('noValid6').innerHTML="Veuillez entrez un nom valide"; 
-    radioButn.focus(); 
-    return false; 
-   }
-   document.getElementById('noValid6').innerHTML="";
-}
+//    console.log(validate)
+// }

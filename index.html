@@ -10,36 +10,36 @@
 
 <body>
 
-	<h1><center>MY LIB</center></h1>
+	<h1>MY LIB</h1>
 	<hr>
 			<div class="employee-form">
                 <form onsubmit="event.preventDefault();onFormSubmit();" autocomplete="off">
                     <div>
-                        <label>TITRE*</label><label id="noValid1"></label>
-                        <input type="text" maxlength="30" name="titre" id="formTitre">
+                        <label>TITRE</label>
+                        <input type="text" maxlength="30" name="titre" id="formTitre" required>
                     </div>
                     <div>
-                        <label>AUTEUR</label><label id="noValid2"></label>
-                        <input type="text" maxlength="30" name="auteur" id="formAuteur">
+                        <label>AUTEUR</label>
+                        <input type="text" maxlength="30" name="auteur" id="formAuteur" required>
                     </div>
                     <div>
-                        <label>PRIX</label><label id="noValid3"></label>
-                        <input type="number" name="prix" id="formPrix">
+                        <label>PRIX</label>
+                        <input type="number" name="prix" id="formPrix" required>
                     </div>
                     <div>
-                        <label>DATE DE PUBLICATION</label><label id="noValid4"></label>
-                        <input type="date" name="dateDePublication" id="form-date-pub">
+                        <label>DATE DE PUBLICATION</label>
+                        <input type="date" name="dateDePublication" id="form-date-pub"required>
                     </div>
                     <div>
-                        <label>LANGUE</label><label id="noValid5"></label>
-                        <input type="text" name="langue" id="formLangue" list="lesLangues">
+                        <label>LANGUE</label>
+                        <input type="text" name="langue" id="formLangue" list="lesLangues" required>
                         <datalist id="lesLangues">
                             <option value="Francais">
                             <option value="Anglais">
                             <option value="Arabe">
                           </datalist>
                     </div>
-                    <div id="input2"><label id="noValid6"></label>
+                    <div>
                         <input type="radio" id="typeRoman" name="typee" value="Roman" >
                         <label>ROMAN</label>
                         <input type="radio" id="typeEssai" name="typee" value="Essai" >
@@ -54,7 +54,7 @@
 		</div>
 		<br/>
 		<div class = "employees-table">
-                <table class="list" id="employeist">
+                <table  id="list">
                     <thead>
                         <tr>
                             <th>TITRE</th>
@@ -66,7 +66,7 @@
                             <th >ACTIONS</th>
                         </tr>
                     </thead>
-                    <tbody id="tbody">
+                    <tbody>
 
                     </tbody>
                 </table>
