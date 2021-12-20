@@ -1,53 +1,85 @@
 var selectedRow = null
 
 function onFormSubmit() {
-        var formData = readFormData();
-        if (selectedRow == null)
-            insertNewRecord(formData);
+        var infoBook = readFormData();
+        if (selectedRow == null){
+            insertNewRecord(infoBook);
+
+        }
         else
-            updateRecord(formData);
+            updateRecord(infoBook);
         resetForm();
     console.log(onFormSubmit)
 
 }
+var titre = document.getElementById("titre").value;
+var auteur = document.getElementById("auteur").value;
+var prix = document.getElementById("prix").value;
+var datePub = document.getElementById("datePub").value;
+var langue = document.getElementById("langue").value;
+// var type = document.querySelector('input[name="typee"]:checked').value;
+
+class Ouvrage
+{
+    constructor(titre,nomAuteur,prix,datePublication,langue,type,emailAuteur)
+    {
+        this.titre = titre;
+        this.nomAuteur = nomAuteur;
+        this.prix = prix;
+        this.datePublication = datePublication;
+        this.langue = langue;
+        this.type = type;
+        this.emailAuteur = emailAuteur;
+    }
+    DetailOuvrage()
+    {
+        return `L'ouvrage ${this.titre} est un ${this.type} en langue ${this.langue}, écrit par ${this.nomAuteur} et publié le ${this.datePublication}. Le prix de ${this.titre} est de ${this.prix} Dhs.`;
+
+    }
+}
+
+
+/*let book = new Ouvrage("Programmation Javascript","Bakkali Ahmed",16.6,"12/11/2021","Français","essai");*/
+let book2= new Ouvrage(titre,auteur,prix,datePub,langue)
+
 
 function readFormData() {
-    let formData = {};
-    formData["formtitre"] = document.getElementById("formTitre").value;
-    formData["formauteur"] = document.getElementById("formAuteur").value;
-    formData["formprix"] = document.getElementById("formPrix").value;
-    formData["formdate"] = document.getElementById("form-date-pub").value;
-    formData["formlangue"] = document.getElementById("formLangue").value;
-    formData['formtype']= document.querySelector('input[name="typee"]:checked').value;
+    let infoBook = {
+        titre : document.getElementById("titre").value,
+        auteur : document.getElementById("auteur").value,
+        prix : document.getElementById("prix").value,
+        datePub : document.getElementById("datePub").value,
+        langue : document.getElementById("langue").value
+    };
+    console.log(infoBook.DetailOuvrage());
+    // formData["titre"] = document.getElementById("titre").value;
+    // formData["auteur"] = document.getElementById("auteur").value;
+    // formData["prix"] = document.getElementById("prix").value;
+    // formData["date"] = document.getElementById("datePub").value;
+    // formData["langue"] = document.getElementById("langue").value;
+    // formData['type']= document.querySelector('input[name="typee"]:checked').value;
 
-    console.log(formData)
-    return formData;
+    console.log(infoBook)
+    return infoBook;
 
 }
-// function displayRadioValue() {
-//     var radioBtn = document.getElementsByName('type');
-      
-//     for(i = 0; i < radioBtn.length; i++) {
-//         if(radioBtn[i].checked)
-//         cell6.innerHTML = radioBtn[i].value;
-//     }
-// }
+
 
 function insertNewRecord(data) {
     var table = document.getElementById("list").getElementsByTagName('tbody')[0];
     var newRow = table.insertRow(table.length);
     cell1 = newRow.insertCell(0);
-    cell1.innerHTML = data.formtitre;
+    cell1.innerHTML = data.titre;
     cell2 = newRow.insertCell(1);
-    cell2.innerHTML = data.formauteur;
+    cell2.innerHTML = data.auteur;
     cell3 = newRow.insertCell(2);
-    cell3.innerHTML = data.formprix;
+    cell3.innerHTML = data.prix;
     cell4 = newRow.insertCell(3);
-    cell4.innerHTML = data.formdate;
+    cell4.innerHTML = data.datePub;
     cell5 = newRow.insertCell(4);
-    cell5.innerHTML = data.formlangue;
+    cell5.innerHTML = data.langue;
     cell6 = newRow.insertCell(5);
-    cell6.innerHTML = data.formtype;
+    cell6.innerHTML = data.type;
     cell7 = newRow.insertCell(6);
     cell7.innerHTML = `<a onClick="onEdit(this)">Edit</a>
                        <a onClick="onDelete(this)">Delete</a>`;
@@ -56,33 +88,33 @@ function insertNewRecord(data) {
 
 
 function resetForm() {
-    document.getElementById("formTitre").value = "";
-    document.getElementById("formAuteur").value = "";
-    document.getElementById("formPrix").value = "";
-    document.getElementById("form-date-pub").value = "";
-    document.getElementById("formLangue").value = "";
+    document.getElementById("titre").value = "";
+    document.getElementById("auteur").value = "";
+    document.getElementById("prix").value = "";
+    document.getElementById("datePub").value = "";
+    document.getElementById("langue").value = "";
     selectedRow = null;
 }
 
 function onEdit(td) {
     selectedRow = td.parentElement.parentElement;
-    document.getElementById("formTitre").value = selectedRow.cells[0].innerHTML;
-    document.getElementById("formAuteur").value = selectedRow.cells[1].innerHTML;
-    document.getElementById("formPrix").value = selectedRow.cells[2].innerHTML;
-    document.getElementById("form-date-pub").value = selectedRow.cells[3].innerHTML;
-    document.getElementById("formLangue").value = selectedRow.cells[4].innerHTML;
+    document.getElementById("titre").value = selectedRow.cells[0].innerHTML;
+    document.getElementById("auteur").value = selectedRow.cells[1].innerHTML;
+    document.getElementById("prix").value = selectedRow.cells[2].innerHTML;
+    document.getElementById("datePub").value = selectedRow.cells[3].innerHTML;
+    document.getElementById("langue").value = selectedRow.cells[4].innerHTML;
   
     
                        console.log(selectedRow)
  
 }
-function updateRecord(formData) {
-    selectedRow.cells[0].innerHTML = formData.formtitre;
-    selectedRow.cells[1].innerHTML = formData.formauteur;
-    selectedRow.cells[2].innerHTML = formData.formprix;
-    selectedRow.cells[3].innerHTML = formData.formdate;
-    selectedRow.cells[4].innerHTML = formData.formlangue;
-    selectedRow.cells[5].innerHTML = formData.formtype;
+function updateRecord(infoBook) {
+    selectedRow.cells[0].innerHTML = infoBook.titre;
+    selectedRow.cells[1].innerHTML = infoBook.auteur;
+    selectedRow.cells[2].innerHTML = infoBook.prix;
+    selectedRow.cells[3].innerHTML = infoBook.datePub;
+    selectedRow.cells[4].innerHTML = infoBook.langue;
+    selectedRow.cells[5].innerHTML = infoBook.type;
 }
 
 function onDelete(td) {
@@ -93,11 +125,11 @@ function onDelete(td) {
     }
 }
 // function validate() {
-//    let titre = document.getElementById("formTitre");
-//    let auteur = document.getElementById("formAuteur");
-//    let prix =  document.getElementById("formPrix");
-//    let date = document.getElementById("form-date-pub");
-//    let langue = document.getElementById("formLangue");
+//    let titre = document.getElementById("formTitre").value;
+//    let auteur = document.getElementById("formAuteur").value;
+//    let prix =  document.getElementById("formPrix").value;
+//    let date = document.getElementById("form-date-pub").value;
+//    let langue = document.getElementById("formLangue").value;
 //    let radioButn = document.getElementById("input2"); 
   
 //    if (titre.value == "")
@@ -106,10 +138,8 @@ function onDelete(td) {
 //     titre.focus(); 
 //     return false; 
 //    }
-//    else
-//    document.getElementById('noValid1').innerHTML="";
 
-//    if (auteur.value == "")
+//    if (auteur.value == ""  /*&& isNaN(prix.value)*/)
 //    {
 //     document.getElementById('noValid2').innerHTML="Veuillez entrez un nom valide"; 
 //     auteur.focus(); 
