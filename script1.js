@@ -4,21 +4,12 @@ function onFormSubmit() {
         var infoBook = readFormData();
         if (selectedRow == null){
             insertNewRecord(infoBook);
-
         }
         else
             updateRecord(infoBook);
         resetForm();
     console.log(onFormSubmit)
-
 }
-var titre = document.getElementById("titre").value;
-var auteur = document.getElementById("auteur").value;
-var prix = document.getElementById("prix").value;
-var datePub = document.getElementById("datePub").value;
-var langue = document.getElementById("langue").value;
-// var type = document.querySelector('input[name="typee"]:checked').value;
-
 class Ouvrage
 {
     constructor(titre,nomAuteur,prix,datePublication,langue,type,emailAuteur)
@@ -37,56 +28,43 @@ class Ouvrage
 
     }
 }
-
-
-/*let book = new Ouvrage("Programmation Javascript","Bakkali Ahmed",16.6,"12/11/2021","Français","essai");*/
-let book2= new Ouvrage(titre,auteur,prix,datePub,langue)
-
-
 function readFormData() {
-    let infoBook = {
+
+  
+    let infoBook =  {
         titre : document.getElementById("titre").value,
         auteur : document.getElementById("auteur").value,
         prix : document.getElementById("prix").value,
         datePub : document.getElementById("datePub").value,
-        langue : document.getElementById("langue").value
+        langue : document.getElementById("langue").value,
+        type : document.querySelector('input[name="typee"]:checked').value
     };
-    console.log(infoBook.DetailOuvrage());
-    // formData["titre"] = document.getElementById("titre").value;
-    // formData["auteur"] = document.getElementById("auteur").value;
-    // formData["prix"] = document.getElementById("prix").value;
-    // formData["date"] = document.getElementById("datePub").value;
-    // formData["langue"] = document.getElementById("langue").value;
-    // formData['type']= document.querySelector('input[name="typee"]:checked').value;
+    let book2= new Ouvrage(infoBook.titre,infoBook.auteur,infoBook.prix,infoBook.datePub,infoBook.langue,infoBook.type)
+    console.log(book2.DetailOuvrage());
 
-    console.log(infoBook)
     return infoBook;
 
 }
-
-
-function insertNewRecord(data) {
+function insertNewRecord(infoBook) {
     var table = document.getElementById("list").getElementsByTagName('tbody')[0];
     var newRow = table.insertRow(table.length);
     cell1 = newRow.insertCell(0);
-    cell1.innerHTML = data.titre;
+    cell1.innerHTML = infoBook.titre;
     cell2 = newRow.insertCell(1);
-    cell2.innerHTML = data.auteur;
+    cell2.innerHTML = infoBook.auteur;
     cell3 = newRow.insertCell(2);
-    cell3.innerHTML = data.prix;
+    cell3.innerHTML = infoBook.prix;
     cell4 = newRow.insertCell(3);
-    cell4.innerHTML = data.datePub;
+    cell4.innerHTML = infoBook.datePub;
     cell5 = newRow.insertCell(4);
-    cell5.innerHTML = data.langue;
+    cell5.innerHTML = infoBook.langue;
     cell6 = newRow.insertCell(5);
-    cell6.innerHTML = data.type;
+    cell6.innerHTML = infoBook.type;
     cell7 = newRow.insertCell(6);
     cell7.innerHTML = `<a onClick="onEdit(this)">Edit</a>
                        <a onClick="onDelete(this)">Delete</a>`;
                        
 }
-
-
 function resetForm() {
     document.getElementById("titre").value = "";
     document.getElementById("auteur").value = "";
@@ -95,7 +73,6 @@ function resetForm() {
     document.getElementById("langue").value = "";
     selectedRow = null;
 }
-
 function onEdit(td) {
     selectedRow = td.parentElement.parentElement;
     document.getElementById("titre").value = selectedRow.cells[0].innerHTML;
@@ -104,6 +81,7 @@ function onEdit(td) {
     document.getElementById("datePub").value = selectedRow.cells[3].innerHTML;
     document.getElementById("langue").value = selectedRow.cells[4].innerHTML;
   
+    
     
                        console.log(selectedRow)
  
