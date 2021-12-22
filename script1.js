@@ -37,10 +37,11 @@ function readFormData() {
         prix : document.getElementById("prix").value,
         datePub : document.getElementById("datePub").value,
         langue : document.getElementById("langue").value,
-        type : document.querySelector('input[name="typee"]:checked').value
+        type : document.querySelector('input[name="typee"]:checked').value,
+        emailAuteur : document.getElementById("emailAuteur").value
     };
     let book2= new Ouvrage(infoBook.titre,infoBook.auteur,infoBook.prix,infoBook.datePub,infoBook.langue,infoBook.type)
-    console.log(book2.DetailOuvrage());
+    alert(book2.DetailOuvrage());
 
     return infoBook;
 
@@ -61,7 +62,9 @@ function insertNewRecord(infoBook) {
     cell6 = newRow.insertCell(5);
     cell6.innerHTML = infoBook.type;
     cell7 = newRow.insertCell(6);
-    cell7.innerHTML = `<a onClick="onEdit(this)">Edit</a>
+    cell7.innerHTML = infoBook.emailAuteur;
+    cell8 = newRow.insertCell(7);
+    cell8.innerHTML = `<a onClick="onEdit(this)">Edit</a>
                        <a onClick="onDelete(this)">Delete</a>`;
                        
 }
@@ -93,6 +96,7 @@ function updateRecord(infoBook) {
     selectedRow.cells[3].innerHTML = infoBook.datePub;
     selectedRow.cells[4].innerHTML = infoBook.langue;
     selectedRow.cells[5].innerHTML = infoBook.type;
+    selectedRow.cells[6].innerHTML = infoBook.emailAuteur;
 }
 
 function onDelete(td) {
