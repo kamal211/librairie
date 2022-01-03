@@ -3,7 +3,7 @@ var selectedRow = null
 function onFormSubmit() {
         var infoBook = readFormData();
         if (selectedRow == null){
-            insertNewRecord(infoBook);
+            newRecord(infoBook);
         }
         else
             updateRecord(infoBook);
@@ -46,9 +46,9 @@ function readFormData() {
     return infoBook;
 
 }
-function insertNewRecord(infoBook) {
-    var table = document.getElementById("list").getElementsByTagName('tbody')[0];
-    var newRow = table.insertRow(table.length);
+function newRecord(infoBook) {
+    let table = document.getElementById("list").getElementsByTagName('tbody')[0];
+    let newRow = table.insertRow(table.length);
     cell1 = newRow.insertCell(0);
     cell1.innerHTML = infoBook.titre;
     cell2 = newRow.insertCell(1);
@@ -63,11 +63,33 @@ function insertNewRecord(infoBook) {
     cell6.innerHTML = infoBook.type;
     cell7 = newRow.insertCell(6);
     cell7.innerHTML = infoBook.emailAuteur;
-    cell8 = newRow.insertCell(7);
+    cell8 =
+     newRow.insertCell(7);
     cell8.innerHTML = `<a onClick="onEdit(this)">Edit</a>
                        <a onClick="onDelete(this)">Delete</a>`;
-                       
+                       tri();
+      
 }
+console.log(tri())
+function tri() 
+{
+    let table = document.querySelectorAll("td")[0]
+    for(let i=1 ; i<table.length ; i++)
+    {
+           let last = table[i];
+           let j = i-1 ;
+           while((j > -1) && (last < table[j]))
+           {
+               table[j+1] = table[j];
+               j--;
+           }
+           table[j+1] = last;
+    }
+    return table
+
+}
+
+
 function resetForm() {
     document.getElementById("titre").value = "";
     document.getElementById("auteur").value = "";
@@ -77,7 +99,8 @@ function resetForm() {
     selectedRow = null;
 }
 function onEdit(td) {
-    selectedRow = td.parentElement.parentElement;
+    selectedRow = td.parentElement.parentElement
+    ;
     document.getElementById("titre").value = selectedRow.cells[0].innerHTML;
     document.getElementById("auteur").value = selectedRow.cells[1].innerHTML;
     document.getElementById("prix").value = selectedRow.cells[2].innerHTML;
